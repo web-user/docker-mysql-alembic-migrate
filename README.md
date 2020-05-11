@@ -20,3 +20,9 @@ from model.product import Base as ProductBase
 ```
 sqlalchemy.url = postgres://sandbox:sandbox@database/sandbox
 ```
+
+## connections MySQL
+
+```
+127.0.0.1:3319
+```
