@@ -1,0 +1,41 @@
+version: '3'
+services:
+  app_server:
+    container_name: app-server
+    build: ./app-server
+    environment:
+      - DB_USER=sandbox
+      - DB_PASSWORD=sandbox
+      - DB_NAME=sandbox
+      - DB_HOST=database:5432
+    volumes:
+      - ./app-server/app:/srv/app
+    command: tail -f /dev/null
+
+  # database:
+    # container_name: postgres
+    # image: postgres
+    # ports:
+      # - "5432:5432"
+    # environment:
+      # - POSTGRES_PASSWORD=sandbox
+      # - POSTGRES_USER=sandbox
+      # - POSTGRES_DB=sandbox
+    # volumes:
+       # - ./postgres-data:/var/lib/postgresql/data
+
+  database:
+    container_name: mysql
+    restart: always
+    image: mysql:5.7
+    ports:
+      - "3319:3306"
+    env_file:
+      - ".env"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./my-datavolume:/var/lib/mysql
