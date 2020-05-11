@@ -12,18 +12,6 @@ services:
       - ./app-server/app:/srv/app
     command: tail -f /dev/null
 
-  # database:
-    # container_name: postgres
-    # image: postgres
-    # ports:
-      # - "5432:5432"
-    # environment:
-      # - POSTGRES_PASSWORD=sandbox
-      # - POSTGRES_USER=sandbox
-      # - POSTGRES_DB=sandbox
-    # volumes:
-       # - ./postgres-data:/var/lib/postgresql/data
-
   database:
     container_name: mysql
     restart: always
