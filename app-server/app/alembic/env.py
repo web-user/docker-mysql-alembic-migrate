@@ -12,10 +12,13 @@ sys.path.insert(0, os.getcwd())
 
 from model.product import Base as ProductBase
 
-
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+config.set_main_option('sqlalchemy.url', "mysql+mysqldb://{ueser}:{passw}@database/{database}".format(
+                                   ueser=os.environ.get('MYSQL_USER'),
+                                   passw=os.environ.get('MYSQL_PASSWORD'),
+                                   database=os.environ.get('MYSQL_DATABASE')))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
